@@ -1,46 +1,37 @@
-const readline = require("readline");
+const prompt = require("prompt-sync")();
+const inventory = require("./inventory")
+const inv = new inventory();
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-console.log("welcome in our product management");
-panneauDeControle();
-
-function panneauDeControle() {
-  console.log("Panneau de Contrôle ; Merci de saisir votre choix :");
-  console.log("1: Ajouter.");
-  console.log("2: Afficher.");
-  console.log("3: Modifier.");
-  console.log("4: Suprimer.");
-  console.log("5: Quitter.");
-  rl.question("Entrez votre choix : ", (choix) => {
-    switch (choix) {
-      case "1":
-        console.log("Ajouter un nouveau produit :");
-        panneauDeControle();
-        break;
-      case "2":
-        console.log("Disponibilité  des produits :");
-        panneauDeControle();
-        break;
-      case "3":
-        console.log("Modification sur les infos des produits :");
-        panneauDeControle();
-        break;
-      case "4":
-        console.log("Supprimer le produit :");
-        panneauDeControle();
-        break;
-      case "5":
-        console.log("\n A très bien tôt !");
-        rl.close();
-        break;
-      default:
-        console.log("\nChoix invalide. veuillez essayez les options disponible  ");
-        panneauDeControle();
-        break;
-    }
-  });
+function stockManager(){
+    let menuOption;
+do {
+    inv.showMainMenu();
+    menuOption = Number(prompt("Enter your choice :"));
+    switch (menuOption) {
+        case 1:
+            inv.addProducts();
+            break;
+        case 2:
+            inv.displayAllProducts();
+            break;
+        case 3:
+            inv.modifyProduct();
+            break;
+        case 4:
+            inv.deleteProduct();
+            break;
+        case 0:
+            console.log("---------------------");
+            console.log(" Exiting");
+           
+            break;
+        default:
+            console.log("----------------------");
+            console.log("invalid option! please select a valid option");
+            
+            break;
+        }
+    } while (menuOption);
 }
+
+stockManager();
