@@ -2,6 +2,8 @@ const prompt = require("prompt-sync")();
 const inventory = require("./inventory")
 const inv = new inventory();
 
+// hello test
+
 function stockManager(){
     let menuOption;
 do {
